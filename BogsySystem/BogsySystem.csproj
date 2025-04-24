@@ -63,43 +63,63 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormButtonAction.cs" />
-    <Compile Include="CustomerLibraryForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CustomerLibraryForm.Designer.cs">
-      <DependentUpon>CustomerLibraryForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MainMenuForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainMenuForm.Designer.cs">
-      <DependentUpon>MainMenuForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ModelDataSet.Designer.cs">
+    <Compile Include="bogsyDatabaseDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDataSet.xsd</DependentUpon>
+      <DependentUpon>bogsyDatabaseDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Design\VideoRentalMenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Design\VideoRentalMenuForm.Designer.cs">
+      <DependentUpon>VideoRentalMenuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\VideoReturnForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Design\VideoReturnForm.Designer.cs">
+      <DependentUpon>VideoReturnForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Methods\CustomerLibraryButtonAction.cs" />
+    <Compile Include="Design\CustomerLibraryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Design\CustomerLibraryForm.Designer.cs">
+      <DependentUpon>CustomerLibraryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\MainMenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Design\MainMenuForm.Designer.cs">
+      <DependentUpon>MainMenuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Methods\VideoLibraryButtonAction.cs" />
+    <Compile Include="Methods\VideoRentalButtonAction.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VideoLibraryForm.cs">
+    <Compile Include="Design\VideoLibraryForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VideoLibraryForm.Designer.cs">
+    <Compile Include="Design\VideoLibraryForm.Designer.cs">
       <DependentUpon>VideoLibraryForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="VideoRentalForm.cs">
+    <Compile Include="Design\VideoRentalForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VideoRentalForm.Designer.cs">
+    <Compile Include="Design\VideoRentalForm.Designer.cs">
       <DependentUpon>VideoRentalForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="CustomerLibraryForm.resx">
+    <EmbeddedResource Include="Design\CustomerLibraryForm.resx">
       <DependentUpon>CustomerLibraryForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainMenuForm.resx">
+    <EmbeddedResource Include="Design\MainMenuForm.resx">
       <DependentUpon>MainMenuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\VideoRentalMenuForm.resx">
+      <DependentUpon>VideoRentalMenuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\VideoReturnForm.resx">
+      <DependentUpon>VideoReturnForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -111,22 +131,22 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="VideoLibraryForm.resx">
+    <EmbeddedResource Include="Design\VideoLibraryForm.resx">
       <DependentUpon>VideoLibraryForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VideoRentalForm.resx">
+    <EmbeddedResource Include="Design\VideoRentalForm.resx">
       <DependentUpon>VideoRentalForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="ModelDataSet.xsc">
-      <DependentUpon>ModelDataSet.xsd</DependentUpon>
+    <None Include="bogsyDatabaseDataSet.xsc">
+      <DependentUpon>bogsyDatabaseDataSet.xsd</DependentUpon>
     </None>
-    <None Include="ModelDataSet.xsd">
+    <None Include="bogsyDatabaseDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ModelDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>bogsyDatabaseDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="ModelDataSet.xss">
-      <DependentUpon>ModelDataSet.xsd</DependentUpon>
+    <None Include="bogsyDatabaseDataSet.xss">
+      <DependentUpon>bogsyDatabaseDataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -151,15 +171,6 @@
     <None Include="Resources\gradient %282%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Database1.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Database1_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>Database1.mdf</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
@@ -170,6 +181,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Database\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

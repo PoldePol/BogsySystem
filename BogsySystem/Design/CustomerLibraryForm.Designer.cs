@@ -30,11 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerLibraryForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.btnClearCustomer = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.customerLibraryBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.bogsyDatabaseDataSet = new BogsySystem.bogsyDatabaseDataSet();
             this.btnEditCustomer = new System.Windows.Forms.Button();
             this.btnAddCustomer = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -50,10 +55,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.bdayPicker = new System.Windows.Forms.DateTimePicker();
-            this.modelDataSet = new BogsySystem.ModelDataSet();
             this.customerLibraryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.customerLibraryTableAdapter = new BogsySystem.ModelDataSetTableAdapters.CustomerLibraryTableAdapter();
-            this.tableAdapterManager = new BogsySystem.ModelDataSetTableAdapters.TableAdapterManager();
+            this.customerLibraryTableAdapter1 = new BogsySystem.bogsyDatabaseDataSetTableAdapters.CustomerLibraryTableAdapter();
+            this.tableAdapterManager1 = new BogsySystem.bogsyDatabaseDataSetTableAdapters.TableAdapterManager();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,8 +66,9 @@
             this.phoneNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.homeAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerLibraryBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bogsyDatabaseDataSet)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.modelDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerLibraryBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,6 +105,7 @@
             this.btnClearCustomer.TabIndex = 32;
             this.btnClearCustomer.Text = "CLEAR";
             this.btnClearCustomer.UseVisualStyleBackColor = true;
+            this.btnClearCustomer.Click += new System.EventHandler(this.btnClearCustomer_Click);
             // 
             // btnExit
             // 
@@ -118,6 +124,14 @@
             // 
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.InactiveBorder;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
@@ -127,12 +141,39 @@
             this.emailAddressDataGridViewTextBoxColumn,
             this.phoneNumberDataGridViewTextBoxColumn,
             this.homeAddressDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.customerLibraryBindingSource;
+            this.dataGridView1.DataSource = this.customerLibraryBindingSource1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Location = new System.Drawing.Point(16, 55);
             this.dataGridView1.Name = "dataGridView1";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.Size = new System.Drawing.Size(1194, 354);
             this.dataGridView1.TabIndex = 30;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // customerLibraryBindingSource1
+            // 
+            this.customerLibraryBindingSource1.DataMember = "CustomerLibrary";
+            this.customerLibraryBindingSource1.DataSource = this.bogsyDatabaseDataSet;
+            // 
+            // bogsyDatabaseDataSet
+            // 
+            this.bogsyDatabaseDataSet.DataSetName = "bogsyDatabaseDataSet";
+            this.bogsyDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // btnEditCustomer
             // 
@@ -145,6 +186,7 @@
             this.btnEditCustomer.TabIndex = 29;
             this.btnEditCustomer.Text = "EDIT";
             this.btnEditCustomer.UseVisualStyleBackColor = true;
+            this.btnEditCustomer.Click += new System.EventHandler(this.btnEditCustomer_Click);
             // 
             // btnAddCustomer
             // 
@@ -289,76 +331,69 @@
             this.bdayPicker.Name = "bdayPicker";
             this.bdayPicker.Size = new System.Drawing.Size(455, 26);
             this.bdayPicker.TabIndex = 17;
-            this.bdayPicker.Value = new System.DateTime(2025, 2, 19, 0, 0, 0, 0);
+            this.bdayPicker.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             // 
-            // modelDataSet
+            // customerLibraryTableAdapter1
             // 
-            this.modelDataSet.DataSetName = "ModelDataSet";
-            this.modelDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.customerLibraryTableAdapter1.ClearBeforeFill = true;
             // 
-            // customerLibraryBindingSource
+            // tableAdapterManager1
             // 
-            this.customerLibraryBindingSource.DataMember = "CustomerLibrary";
-            this.customerLibraryBindingSource.DataSource = this.modelDataSet;
-            // 
-            // customerLibraryTableAdapter
-            // 
-            this.customerLibraryTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.CustomerLibraryTableAdapter = this.customerLibraryTableAdapter;
-            this.tableAdapterManager.UpdateOrder = BogsySystem.ModelDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager1.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager1.CustomerLibraryTableAdapter = this.customerLibraryTableAdapter1;
+            this.tableAdapterManager1.RentalInformationTableAdapter = null;
+            this.tableAdapterManager1.UpdateOrder = BogsySystem.bogsyDatabaseDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager1.VideoLibraryTableAdapter = null;
             // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.idDataGridViewTextBoxColumn.HeaderText = "ID:";
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.Width = 40;
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Width = 30;
             // 
             // firstNameDataGridViewTextBoxColumn
             // 
             this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "First_Name";
             this.firstNameDataGridViewTextBoxColumn.HeaderText = "First Name:";
             this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
-            this.firstNameDataGridViewTextBoxColumn.Width = 200;
+            this.firstNameDataGridViewTextBoxColumn.Width = 140;
             // 
             // lastNameDataGridViewTextBoxColumn
             // 
             this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "Last_Name";
             this.lastNameDataGridViewTextBoxColumn.HeaderText = "Last Name:";
             this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
-            this.lastNameDataGridViewTextBoxColumn.Width = 160;
+            this.lastNameDataGridViewTextBoxColumn.Width = 110;
             // 
             // birthdayDataGridViewTextBoxColumn
             // 
             this.birthdayDataGridViewTextBoxColumn.DataPropertyName = "Birthday";
             this.birthdayDataGridViewTextBoxColumn.HeaderText = "Birthday:";
             this.birthdayDataGridViewTextBoxColumn.Name = "birthdayDataGridViewTextBoxColumn";
-            this.birthdayDataGridViewTextBoxColumn.Width = 150;
+            this.birthdayDataGridViewTextBoxColumn.Width = 90;
             // 
             // emailAddressDataGridViewTextBoxColumn
             // 
             this.emailAddressDataGridViewTextBoxColumn.DataPropertyName = "Email_Address";
             this.emailAddressDataGridViewTextBoxColumn.HeaderText = "Email Address:";
             this.emailAddressDataGridViewTextBoxColumn.Name = "emailAddressDataGridViewTextBoxColumn";
-            this.emailAddressDataGridViewTextBoxColumn.Width = 225;
+            this.emailAddressDataGridViewTextBoxColumn.Width = 255;
             // 
             // phoneNumberDataGridViewTextBoxColumn
             // 
             this.phoneNumberDataGridViewTextBoxColumn.DataPropertyName = "Phone_Number";
             this.phoneNumberDataGridViewTextBoxColumn.HeaderText = "Phone Number:";
             this.phoneNumberDataGridViewTextBoxColumn.Name = "phoneNumberDataGridViewTextBoxColumn";
-            this.phoneNumberDataGridViewTextBoxColumn.Width = 125;
+            this.phoneNumberDataGridViewTextBoxColumn.Width = 140;
             // 
             // homeAddressDataGridViewTextBoxColumn
             // 
             this.homeAddressDataGridViewTextBoxColumn.DataPropertyName = "Home_Address";
             this.homeAddressDataGridViewTextBoxColumn.HeaderText = "Home Address:";
             this.homeAddressDataGridViewTextBoxColumn.Name = "homeAddressDataGridViewTextBoxColumn";
-            this.homeAddressDataGridViewTextBoxColumn.Width = 250;
+            this.homeAddressDataGridViewTextBoxColumn.Width = 385;
             // 
             // CustomerLibraryForm
             // 
@@ -382,9 +417,10 @@
             this.Text = "BOGSY VIDEO STORE";
             this.Load += new System.EventHandler(this.CustomerLibraryForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerLibraryBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bogsyDatabaseDataSet)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.modelDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerLibraryBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -413,10 +449,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker bdayPicker;
-        private ModelDataSet modelDataSet;
         private System.Windows.Forms.BindingSource customerLibraryBindingSource;
-        private ModelDataSetTableAdapters.CustomerLibraryTableAdapter customerLibraryTableAdapter;
-        private ModelDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private bogsyDatabaseDataSet bogsyDatabaseDataSet;
+        private System.Windows.Forms.BindingSource customerLibraryBindingSource1;
+        private bogsyDatabaseDataSetTableAdapters.CustomerLibraryTableAdapter customerLibraryTableAdapter1;
+        private bogsyDatabaseDataSetTableAdapters.TableAdapterManager tableAdapterManager1;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;

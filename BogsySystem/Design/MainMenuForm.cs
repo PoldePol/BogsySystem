@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BogsySystem.Design;
 
 namespace BogsySystem
 {
@@ -25,8 +26,8 @@ namespace BogsySystem
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            VideoRentalForm videoRental = new VideoRentalForm();
-            videoRental.Show();
+            VideoRentalMenuForm videoMenuRental = new VideoRentalMenuForm();
+            videoMenuRental.Show();
 
         }
 

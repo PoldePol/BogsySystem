@@ -33,5 +33,16 @@ namespace BogsySystem.Properties {
                 return ((string)(this["cn"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\MSSQL2025;Initial Catalog=bogsyDatabase;User ID=sa;Password=1234567" +
+            "8;TrustServerCertificate=True")]
+        public string cnBogsy {
+            get {
+                return ((string)(this["cnBogsy"]));
+            }
+        }
     }
 }
