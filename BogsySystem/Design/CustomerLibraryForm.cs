@@ -7,12 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BogsySystem.Methods;
 
 namespace BogsySystem
 {
     public partial class CustomerLibraryForm : Form
     {
-        CustomerLibraryButtonAction formButtonAction = new CustomerLibraryButtonAction();
+        CustomerLibraryButtonAction customerLibraryButtonAction = new CustomerLibraryButtonAction();
+        GlobalSharedButtonAction globalSharedButtonAction = new GlobalSharedButtonAction();
+
         public CustomerLibraryForm()
         {
             InitializeComponent();
@@ -20,7 +23,7 @@ namespace BogsySystem
 
         private void button3_Click(object sender, EventArgs e)
         {
-            formButtonAction.btnExitAction(this);
+            globalSharedButtonAction.globalButtonExitAction(this);
         }
 
         private void CustomerLibraryForm_Load(object sender, EventArgs e)
@@ -38,24 +41,23 @@ namespace BogsySystem
 
         private void button1_Click(object sender, EventArgs e)
         {
-            formButtonAction.btnAddCustomerAction(txtFname,txtLname,txtEAddress, bdayPicker, txtPNumber,txtHAddress, dataGridView1, btnAddCustomer);
+            customerLibraryButtonAction.btnAddCustomerAction(txtFname,txtLname,txtEAddress, bdayPicker, txtPNumber,txtHAddress, dataGridView1, btnAddCustomer);
         }
 
         private void btnClearCustomer_Click(object sender, EventArgs e)
         {
-            formButtonAction.btnClearAction(txtFname, txtLname, bdayPicker, txtPNumber, txtEAddress, txtHAddress, btnAddCustomer);
+            customerLibraryButtonAction.btnClearAction(txtFname, txtLname, bdayPicker, txtPNumber, txtEAddress, txtHAddress, btnAddCustomer);
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             btnAddCustomer.Enabled = false;
-
-            formButtonAction.btnSelectCustomerAction(e, dataGridView1, txtFname, txtLname, bdayPicker, txtPNumber, txtEAddress, txtHAddress);
+            customerLibraryButtonAction.btnSelectCustomerAction(e, dataGridView1, txtFname, txtLname, bdayPicker, txtPNumber, txtEAddress, txtHAddress);
         }
 
         private void btnEditCustomer_Click(object sender, EventArgs e)
         {
-            formButtonAction.btnEditCustomerAction(txtFname, txtLname, bdayPicker, txtPNumber, txtEAddress, txtHAddress, btnAddCustomer, dataGridView1);
+            customerLibraryButtonAction.btnEditCustomerAction(txtFname, txtLname, bdayPicker, txtPNumber, txtEAddress, txtHAddress, btnAddCustomer, dataGridView1);
         }
     }
 }

@@ -16,14 +16,12 @@ namespace BogsySystem
 {
     public partial class VideoLibraryForm : Form
     {
-        SqlConnection cnBogsy;
-        SqlCommand cmd;
-        SqlDataReader dr;
-        SqlDataAdapter da;
-        public string videoID;
+
+        public string VideoTitle;
 
         CustomerLibraryButtonAction formButtonAction = new CustomerLibraryButtonAction();
         VideoLibraryButtonAction videoLibraryButtonAction = new VideoLibraryButtonAction();
+        GlobalSharedButtonAction globalSharedButtonAction = new GlobalSharedButtonAction(); 
         public VideoLibraryForm()
         {
             InitializeComponent();
@@ -37,7 +35,7 @@ namespace BogsySystem
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            formButtonAction.btnExitAction(this);
+            globalSharedButtonAction.globalButtonExitAction(this);
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
@@ -47,34 +45,14 @@ namespace BogsySystem
 
         private void comboBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxCategory.SelectedItem != null)
-            {
-
-                string selectedVideo = comboBoxCategory.SelectedItem.ToString();
-
-                switch (selectedVideo)
-                {
-                    case "DVD":
-                        comboBoxPrice.SelectedItem = "50";
-                        break;
-
-                    case "VCD":
-                        comboBoxPrice.SelectedItem = "25";
-                        break;
-
-                    default:
-                        comboBoxPrice.SelectedIndex = -1;
-                        break;
-
-                }
-            }
+            videoLibraryButtonAction.videoLibraryComboBox(comboBoxCategory, comboBoxPrice);
         }
 
         private void VideoLibraryForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'bogsyDatabaseDataSet.VideoLibrary' table. You can move, or remove it, as needed.
             this.videoLibraryTableAdapter.Fill(this.bogsyDatabaseDataSet.VideoLibrary);
-           
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -92,28 +70,7 @@ namespace BogsySystem
             btnAddVideo.Enabled = false;
 
             videoLibraryButtonAction.btnSelectVideoAction(e, dataGridView2, txtTitle, comboBoxCategory, comboBoxPrice, txtQuan, comboBoxMaxRent);
-
-            DataGridViewRow row = dataGridView2.Rows[e.RowIndex];
-            videoID = row.Cells["iDDataGridViewTextBoxColumn1"].Value.ToString();
-
-            if (row.Cells["Status"].Value != null)
-            {
-                string status = row.Cells["Status"].Value.ToString();
-
-                if (status == "Active")
-                {
-                    btnStatusVideo.Text = "Inactive";
-                }
-                else
-                {
-                    btnStatusVideo.Text = "Active";
-                }
-            }
-
-            
-                
-
-
+            videoLibraryButtonAction.btnStatusUpdate (VideoTitle, btnStatusVideo, e, dataGridView2);
         }
 
         private void btnEditVideo_Click(object sender, EventArgs e)
@@ -123,31 +80,7 @@ namespace BogsySystem
 
         private void btnStatusVideo_Click(object sender, EventArgs e)
         {
-            
-
-            cnBogsy = new SqlConnection("Data Source=.\\MSSQL2025;Initial Catalog=bogsyDatabase;User ID=sa;Password=12345678;TrustServerCertificate=True");
-            cnBogsy.Open();
-
-            string QUERY = "UPDATE VideoLibrary SET " +
-                "Status = @Status " +
-                " WHERE ID = @ID";
-
-            string buttonlabel = btnStatusVideo.Text;
-
-            SqlCommand CMD = new SqlCommand(QUERY, cnBogsy);
-            CMD.Parameters.AddWithValue("@Status", buttonlabel);
-            CMD.Parameters.AddWithValue("@ID", videoID);
-            CMD.ExecuteNonQuery();
-
-            cnBogsy.Close();
-
-            videoLibraryButtonAction.btnClearAction( txtTitle,  comboBoxCategory,  comboBoxPrice,  txtQuan,  comboBoxMaxRent,  btnAddVideo);
-
-            cnBogsy.Open();
-            da = new SqlDataAdapter("Select * FROM VideoLibrary", cnBogsy);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dataGridView2.DataSource = dt;
+            videoLibraryButtonAction.btnVideoStatusAction(btnStatusVideo, txtTitle, comboBoxCategory, comboBoxPrice, txtQuan, comboBoxMaxRent, btnAddVideo, dataGridView2);
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)

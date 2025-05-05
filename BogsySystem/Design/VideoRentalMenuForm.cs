@@ -7,12 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BogsySystem.Methods;
 
 namespace BogsySystem.Design
 {
     public partial class VideoRentalMenuForm : Form
     {
         CustomerLibraryButtonAction formButtonAction = new CustomerLibraryButtonAction();
+        GlobalSharedButtonAction globalSharedButtonAction = new GlobalSharedButtonAction();
+
         public VideoRentalMenuForm()
         {
             InitializeComponent();
@@ -32,14 +35,14 @@ namespace BogsySystem.Design
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            formButtonAction.btnExitAction(this);
+            globalSharedButtonAction.globalButtonExitAction(this);
         }
 
         private void btnVideoReturn_Click(object sender, EventArgs e)
         {
-            this.Close();
             VideoReturnForm videoReturn = new VideoReturnForm();
-            videoReturn.Show();
+            videoReturn.Show();this.Close();
+            
         }
     }
 }

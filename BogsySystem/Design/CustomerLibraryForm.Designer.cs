@@ -58,7 +58,6 @@
             this.customerLibraryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.customerLibraryTableAdapter1 = new BogsySystem.bogsyDatabaseDataSetTableAdapters.CustomerLibraryTableAdapter();
             this.tableAdapterManager1 = new BogsySystem.bogsyDatabaseDataSetTableAdapters.TableAdapterManager();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.birthdayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -134,7 +133,6 @@
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
             this.firstNameDataGridViewTextBoxColumn,
             this.lastNameDataGridViewTextBoxColumn,
             this.birthdayDataGridViewTextBoxColumn,
@@ -340,18 +338,12 @@
             // tableAdapterManager1
             // 
             this.tableAdapterManager1.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager1.BogsyReportTableAdapter = null;
             this.tableAdapterManager1.CustomerLibraryTableAdapter = this.customerLibraryTableAdapter1;
             this.tableAdapterManager1.RentalInformationTableAdapter = null;
             this.tableAdapterManager1.UpdateOrder = BogsySystem.bogsyDatabaseDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager1.VideoLibraryTableAdapter = null;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "ID:";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Width = 30;
+            this.tableAdapterManager1.VideoReportTableAdapter = null;
             // 
             // firstNameDataGridViewTextBoxColumn
             // 
@@ -379,7 +371,7 @@
             this.emailAddressDataGridViewTextBoxColumn.DataPropertyName = "Email_Address";
             this.emailAddressDataGridViewTextBoxColumn.HeaderText = "Email Address:";
             this.emailAddressDataGridViewTextBoxColumn.Name = "emailAddressDataGridViewTextBoxColumn";
-            this.emailAddressDataGridViewTextBoxColumn.Width = 255;
+            this.emailAddressDataGridViewTextBoxColumn.Width = 285;
             // 
             // phoneNumberDataGridViewTextBoxColumn
             // 
@@ -411,6 +403,7 @@
             this.Controls.Add(this.btnAddCustomer);
             this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CustomerLibraryForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -454,7 +447,6 @@
         private System.Windows.Forms.BindingSource customerLibraryBindingSource1;
         private bogsyDatabaseDataSetTableAdapters.CustomerLibraryTableAdapter customerLibraryTableAdapter1;
         private bogsyDatabaseDataSetTableAdapters.TableAdapterManager tableAdapterManager1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn birthdayDataGridViewTextBoxColumn;

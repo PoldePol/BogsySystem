@@ -86,6 +86,7 @@
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnVideoReturn);
             this.Controls.Add(this.btnVideoRental);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "VideoRentalMenuForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

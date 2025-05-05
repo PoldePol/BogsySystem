@@ -68,6 +68,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>bogsyDatabaseDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Database\DatabaseConnection.cs" />
+    <Compile Include="Design\BogsyReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Design\BogsyReport.Designer.cs">
+      <DependentUpon>BogsyReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Design\VideoRentalMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +87,7 @@
     <Compile Include="Design\VideoReturnForm.Designer.cs">
       <DependentUpon>VideoReturnForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Methods\BogsyReportButtonAction.cs" />
     <Compile Include="Methods\CustomerLibraryButtonAction.cs" />
     <Compile Include="Design\CustomerLibraryForm.cs">
       <SubType>Form</SubType>
@@ -93,6 +101,7 @@
     <Compile Include="Design\MainMenuForm.Designer.cs">
       <DependentUpon>MainMenuForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Methods\GlobalSharedButtonAction.cs" />
     <Compile Include="Methods\VideoLibraryButtonAction.cs" />
     <Compile Include="Methods\VideoRentalButtonAction.cs" />
     <Compile Include="Program.cs" />
@@ -109,6 +118,9 @@
     <Compile Include="Design\VideoRentalForm.Designer.cs">
       <DependentUpon>VideoRentalForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Design\BogsyReport.resx">
+      <DependentUpon>BogsyReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Design\CustomerLibraryForm.resx">
       <DependentUpon>CustomerLibraryForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -182,8 +194,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Database\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
