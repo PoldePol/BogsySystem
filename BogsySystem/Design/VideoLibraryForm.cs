@@ -87,5 +87,10 @@ namespace BogsySystem
         {
 
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            videoLibraryButtonAction.videoLibrarySearchBar(dataGridView2, videlLibrarySearchBar);
+        }
     }
 }

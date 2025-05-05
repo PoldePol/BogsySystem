@@ -52,7 +52,6 @@ namespace BogsySystem
             this.customerLibraryTableAdapter.Fill(this.bogsyDatabaseDataSet.CustomerLibrary);
             txtRentalDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
 
-            videoLibraryButtonAction.videoSearchBarDataSource(dataGridView3);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -121,7 +120,8 @@ namespace BogsySystem
 
         private void button2_Click(object sender, EventArgs e)
         {
-            videoRentalButtonAction.btnRentalRentAction(dataGridView1, txtFullName, txtPhoneNumber, txtRentalDate, txtAmountReceive, txtAmount);
+            videoRentalButtonAction.btnRentalRentAction(dataGridView1, txtFullName, txtPhoneNumber, txtRentalDate, txtAmountReceive, txtAmount, txtAmountChange, txtFname, txtLname, txtPNumber, txtEaddress, txtHaddress, txtTitle, txtQuan, comboBoxCategory, comboBoxPrice, comboBoxMaxRent);
+           
         }
 
         private void dataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -178,14 +178,18 @@ namespace BogsySystem
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
+            formButtonAction.CustomerLibrarySearchBar(dataGridView2, txtSearchBar1);
         }
 
         private void txtSearchBar2_TextChanged(object sender, EventArgs e)
         {
-            videoLibraryButtonAction.videoSearchBar(dataGridView3, txtSearchBar2, cnBogsy);
+            videoLibraryButtonAction.videoSearchBar(dataGridView3, txtSearchBar2);
         }
 
+        private void comboBoxPrice_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
     }
 }
 

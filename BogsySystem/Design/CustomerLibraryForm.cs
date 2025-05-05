@@ -59,5 +59,10 @@ namespace BogsySystem
         {
             customerLibraryButtonAction.btnEditCustomerAction(txtFname, txtLname, bdayPicker, txtPNumber, txtEAddress, txtHAddress, btnAddCustomer, dataGridView1);
         }
+
+        private void CustomerLibrarySearchBar_TextChanged(object sender, EventArgs e)
+        {
+            customerLibraryButtonAction.CustomerLibrarySearchBar(dataGridView1, CustomerLibrarySearchBar);
+        }
     }
 }

@@ -48,8 +48,8 @@ namespace BogsySystem
         private void btnVideoReport_Click(object sender, EventArgs e)
         {
             this.Hide();
-            BogsyReport bogsyReport = new BogsyReport();
-            bogsyReport.Show();
+            ReportMenu ReportMenu = new ReportMenu();
+            ReportMenu.Show();
         }
     }
 }

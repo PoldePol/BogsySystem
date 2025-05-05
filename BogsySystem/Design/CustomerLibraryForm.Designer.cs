@@ -64,6 +64,8 @@
             this.emailAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phoneNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.homeAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label9 = new System.Windows.Forms.Label();
+            this.CustomerLibrarySearchBar = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerLibraryBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bogsyDatabaseDataSet)).BeginInit();
@@ -148,7 +150,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 55);
+            this.dataGridView1.Location = new System.Drawing.Point(16, 67);
             this.dataGridView1.Name = "dataGridView1";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
@@ -158,7 +160,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView1.Size = new System.Drawing.Size(1194, 354);
+            this.dataGridView1.Size = new System.Drawing.Size(1194, 348);
             this.dataGridView1.TabIndex = 30;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -387,6 +389,25 @@
             this.homeAddressDataGridViewTextBoxColumn.Name = "homeAddressDataGridViewTextBoxColumn";
             this.homeAddressDataGridViewTextBoxColumn.Width = 385;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(18, 38);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(64, 20);
+            this.label9.TabIndex = 36;
+            this.label9.Text = "Search:";
+            // 
+            // CustomerLibrarySearchBar
+            // 
+            this.CustomerLibrarySearchBar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomerLibrarySearchBar.Location = new System.Drawing.Point(88, 35);
+            this.CustomerLibrarySearchBar.Name = "CustomerLibrarySearchBar";
+            this.CustomerLibrarySearchBar.Size = new System.Drawing.Size(215, 26);
+            this.CustomerLibrarySearchBar.TabIndex = 37;
+            this.CustomerLibrarySearchBar.TextChanged += new System.EventHandler(this.CustomerLibrarySearchBar_TextChanged);
+            // 
             // CustomerLibraryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -394,6 +415,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1226, 656);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.CustomerLibrarySearchBar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnClearCustomer);
@@ -453,5 +476,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn emailAddressDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn phoneNumberDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn homeAddressDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox CustomerLibrarySearchBar;
     }
 }

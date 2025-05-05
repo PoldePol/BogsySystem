@@ -21,6 +21,20 @@ namespace BogsySystem.Methods
         SqlDataReader dr;
         SqlDataAdapter da;
 
+        public void clearRentalAction(TextBox txtFname, TextBox txtLname, TextBox txtPNumber, TextBox txtEaddress, TextBox txtHaddress, TextBox txtTitle, TextBox txtQuan, ComboBox comboBoxCategory, ComboBox comboBoxPrice, ComboBox comboBoxMaxRent)
+        {
+            txtFname.Clear();
+            txtLname.Clear();
+            txtPNumber.Clear();
+            txtEaddress.Clear();
+            txtHaddress.Clear();
+            txtTitle.Clear();
+            txtQuan.Clear();
+
+            comboBoxCategory.SelectedIndex = -1;
+            comboBoxPrice.SelectedIndex = -1;
+            comboBoxMaxRent.SelectedIndex = -1;
+        }
         public void btnRentalExitAction(Form currentForm) //Goes Back to main menu
         {
             currentForm.Close();
@@ -149,7 +163,7 @@ namespace BogsySystem.Methods
             }
         }
 
-        public void btnRentalRentAction(DataGridView DataGridView1, TextBox txtFullName, TextBox txtPhoneNumber, TextBox txtRentalDate, TextBox txtAmountReceive, TextBox txtAmount)
+        public void btnRentalRentAction(DataGridView DataGridView1, TextBox txtFullName, TextBox txtPhoneNumber, TextBox txtRentalDate, TextBox txtAmountReceive, TextBox txtAmount, TextBox txtAmountChange, TextBox txtFname, TextBox txtLname, TextBox txtPNumber, TextBox txtEaddress, TextBox txtHaddress, TextBox txtTitle, TextBox txtQuan, ComboBox comboBoxCategory, ComboBox comboBoxPrice, ComboBox comboBoxMaxRent)
         {
             if (string.IsNullOrWhiteSpace(txtAmountReceive.Text))
             {
@@ -207,7 +221,10 @@ namespace BogsySystem.Methods
 
                                 if (rowsAffected > 0)
                                 {
-                                    MessageBox.Show("Quantity updated successfully.");
+                                    clearRentalAction(txtFname, txtLname, txtPNumber, txtEaddress, txtHaddress, txtTitle, txtQuan, comboBoxCategory, comboBoxPrice, comboBoxMaxRent);
+                                    txtAmount.Text = "0";
+                                    txtAmountChange.Text = "0";
+                                    txtAmountReceive.Text = "0";
                                 }
                                 else
                                 {
@@ -226,13 +243,20 @@ namespace BogsySystem.Methods
                             cmd1.Parameters.AddWithValue("@Title", Title);
                             cmd1.Parameters.AddWithValue("@Category", Category);
                             cmd1.ExecuteNonQuery();
+                            MessageBox.Show("TRANSACTION SUCCESS!", "BOGSY VIDEO STORE", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
                             cnBogsy.Close();
                         }
                     }
+                    
+
                 }
             }
+            
+            DataGridView1.DataSource = null;
+            DataGridView1.Rows.Clear();
+
         }
 
         public void btnRentalSelectAction(DataGridViewCellEventArgs e, DataGridView dataGridView1, TextBox txtCustomerName, TextBox txtPhoneNumber, TextBox txtTitle, TextBox txtQuantity, TextBox txtCategory, TextBox txtPrice, TextBox txtRentalDate, TextBox txtDueDate, TextBox txtODDays, TextBox txtTODCharge )

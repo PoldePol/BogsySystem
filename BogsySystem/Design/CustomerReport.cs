@@ -9,31 +9,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BogsySystem.Methods;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace BogsySystem.Design
 {
-    public partial class BogsyReport : Form
-    {   GlobalSharedButtonAction globaSharedButtonAction = new GlobalSharedButtonAction();
-        public BogsyReport()
+    public partial class CustomerReport : Form
+    {
+        public CustomerReport()
         {
             InitializeComponent();
         }
 
-        private void BogsyReport_Load(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
-            
-            this.videoReportTableAdapter.Fill(this.bogsyDatabaseDataSet.VideoReport);
-            this.bogsyReportTableAdapter.Fill(this.bogsyDatabaseDataSet.BogsyReport);
-            using (SqlConnection cn = new SqlConnection("Data Source=.\\MSSQL2025;Initial Catalog=bogsyDatabase;User ID=sa;Password=12345678;TrustServerCertificate=True"))
-            {
-                string query = "SELECT * FROM VideoLibrary";
-                SqlDataAdapter da = new SqlDataAdapter(query, cn);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
 
-            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -43,18 +31,59 @@ namespace BogsySystem.Design
             ReportMenu.Show();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void CustomerReport_Load(object sender, EventArgs e)
+        {
+            
+            this.rentalInformationTableAdapter.Fill(this.bogsyDatabaseDataSet.RentalInformation);
+            using (SqlConnection cn = new SqlConnection("Data Source=.\\MSSQL2025;Initial Catalog=bogsyDatabase;User ID=sa;Password=12345678;TrustServerCertificate=True"))
+            {
+                string query = "SELECT DISTINCT Customer_Name FROM RentalInformation";
+                SqlDataAdapter da = new SqlDataAdapter(query, cn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                comboBox1.DisplayMember = "Customer_Name";
+                comboBox1.ValueMember = "Customer_Name";
+                comboBox1.DataSource = dt;
+            }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        private int currentRowIndex = 0;
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedName = comboBox1.SelectedValue.ToString();
+            LoadCustomerData(selectedName);
+        }
+
+        private void LoadCustomerData(string customerName)
+        {
+            using (SqlConnection cn = new SqlConnection("Data Source=.\\MSSQL2025;Initial Catalog=bogsyDatabase;User ID=sa;Password=12345678;TrustServerCertificate=True"))
+            {
+                string query = "SELECT * FROM RentalInformation WHERE Customer_Name = @Customer_Name";
+                SqlCommand cmd = new SqlCommand(query, cn);
+                cmd.Parameters.AddWithValue("@Customer_Name", customerName);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                dataGridView1.DataSource = dt;
+            }
+        }
+
+        private int currentRowIndex = 0; 
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
             PrintDocument printDocument = new PrintDocument();
             PrintDialog printDialog = new PrintDialog();
             PrintPreviewDialog printPreviewDialog = new PrintPreviewDialog();
+
+            string customerName = comboBox1.Text;
 
             printDocument.PrintPage += (s, ev) =>
             {
@@ -65,19 +94,22 @@ namespace BogsySystem.Design
                 float pageWidth = ev.MarginBounds.Width;
                 float pageHeight = ev.MarginBounds.Height;
                 float x = ev.MarginBounds.Left; 
-                float y = ev.MarginBounds.Top;  
+                float y = ev.MarginBounds.Top; 
 
-                int numColumns = 4; 
+                int numColumns = 6; 
                 float colWidth = (pageWidth - 20) / numColumns; 
 
-                string headerText = "BOGSY VIDEO REPORT";
+                string headerText = "BOGSY CUSTOMER REPORT";
                 SizeF headerSize = ev.Graphics.MeasureString(headerText, headerFont);
                 float centeredX = (ev.MarginBounds.Width - headerSize.Width) / 2 + ev.MarginBounds.Left;
                 ev.Graphics.DrawString(headerText, headerFont, Brushes.Black, centeredX, y);
                 y += headerFont.GetHeight() + 10;
                 y += headerFont.GetHeight() * 3;
 
-                string[] headers = { "Title", "Category", "Video In", "Video Out" };
+                ev.Graphics.DrawString($"Name: {customerName}", headerFont, Brushes.Black, x, y);
+                y += headerFont.GetHeight() + 20;
+
+                string[] headers = { "Title", "Quantity", "Category", "Price", "Rental Date", "Due Date" };
                 for (int i = 0; i < headers.Length; i++)
                 {
                     ev.Graphics.DrawString(headers[i], tableFont, Brushes.Black, x + i * colWidth, y);
@@ -97,15 +129,17 @@ namespace BogsySystem.Design
                     {
                         if (y + lineHeight + 5 > ev.MarginBounds.Bottom)
                         {
-                            ev.HasMorePages = true; 
+                            ev.HasMorePages = true;
                             currentRowIndex = i; 
                             return;
                         }
 
-                        ev.Graphics.DrawString(row.Cells[0].Value?.ToString() ?? "", tableFont, Brushes.Black, x, y);
-                        ev.Graphics.DrawString(row.Cells[1].Value?.ToString() ?? "", tableFont, Brushes.Black, x + colWidth, y);
-                        ev.Graphics.DrawString(row.Cells[2].Value?.ToString() ?? "", tableFont, Brushes.Black, x + 2 * colWidth, y);
-                        ev.Graphics.DrawString(row.Cells[3].Value?.ToString() ?? "", tableFont, Brushes.Black, x + 3 * colWidth, y);
+                        ev.Graphics.DrawString(row.Cells[2].Value?.ToString() ?? "", tableFont, Brushes.Black, x, y);
+                        ev.Graphics.DrawString(row.Cells[3].Value?.ToString() ?? "", tableFont, Brushes.Black, x + colWidth, y);
+                        ev.Graphics.DrawString(row.Cells[4].Value?.ToString() ?? "", tableFont, Brushes.Black, x + 2 * colWidth, y);
+                        ev.Graphics.DrawString(string.Format("{0:C}", row.Cells[5].Value ?? 0.00), tableFont, Brushes.Black, x + 3 * colWidth, y);
+                        ev.Graphics.DrawString(row.Cells[6].Value?.ToString() ?? "", tableFont, Brushes.Black, x + 4 * colWidth, y);
+                        ev.Graphics.DrawString(row.Cells[7].Value?.ToString() ?? "", tableFont, Brushes.Black, x + 5 * colWidth, y);
                         y += lineHeight + 5;
 
                         rowCount++;
@@ -113,23 +147,18 @@ namespace BogsySystem.Design
                 }
 
                 currentRowIndex = 0;
-                ev.HasMorePages = false;
+                ev.HasMorePages = false; 
             };
 
             printDialog.Document = printDocument;
             printPreviewDialog.Document = printDocument;
 
+            
             if (printDialog.ShowDialog() == DialogResult.OK)
             {
                 printPreviewDialog.ShowDialog();
                 printDocument.Print();
             }
         }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }
-    

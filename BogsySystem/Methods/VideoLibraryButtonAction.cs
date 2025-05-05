@@ -44,7 +44,54 @@ namespace BogsySystem.Methods
                 }
             }
         }
-        
+        public void videoSearchBar(DataGridView dataGridView3, TextBox txtSearchBar2)
+        {
+            try
+            {
+                // Initialize and open the connection
+                connection.DBConnect(ref cnBogsy);
+                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM VideoLibrary WHERE Status = 'Active' ", cnBogsy);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                // Apply the filter
+                string search = txtSearchBar2.Text.Replace("'", "''");
+                DataView dv = dt.DefaultView;
+                dv.RowFilter = $"Title LIKE '%{search}%' OR Category LIKE '%{search}%'";
+
+                // Bind the filtered view
+                dataGridView3.DataSource = dv;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Search failed: " + ex.Message);
+            }
+        }
+
+        public void videoLibrarySearchBar(DataGridView dataGridView3, TextBox txtSearchBar2)
+        {
+            try
+            {
+                // Initialize and open the connection
+                connection.DBConnect(ref cnBogsy);
+                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM VideoLibrary", cnBogsy);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                // Apply the filter
+                string search = txtSearchBar2.Text.Replace("'", "''");
+                DataView dv = dt.DefaultView;
+                dv.RowFilter = $"Title LIKE '%{search}%' OR Category LIKE '%{search}%'";
+
+                // Bind the filtered view
+                dataGridView3.DataSource = dv;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Search failed: " + ex.Message);
+            }
+        }
+
         public void LoadVideoLibraryData(DataGridView dataGridView2)
         {
             da = new SqlDataAdapter("Select * FROM VideoLibrary", cnBogsy);
@@ -80,44 +127,6 @@ namespace BogsySystem.Methods
             }
 
             
-        }
-        public void videoSearchBarDataSource(DataGridView dataGridView3)
-        {
-            SqlConnection cnBogsy = new SqlConnection("Data Source=.\\MSSQL2025;Initial Catalog=bogsyDatabase;User ID=sa;Password=12345678;TrustServerCertificate=True");
-            DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM VideoLibrary", cnBogsy);
-            da.Fill(dt);
-
-            BindingSource bs = new BindingSource();
-            bs.DataSource = dt;
-            dataGridView3.DataSource = bs;
-
-        }
-
-
-        public void videoSearchBar(DataGridView dataGridView3, TextBox txtSearchBar2, SqlConnection cnBogsy)
-        {
-
-            try
-            {
-
-                // Re-fetch data from the database
-                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM VideoLibrary", cnBogsy);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-
-                // Apply the filter
-                string search = txtSearchBar2.Text.Replace("'", "''"); // Escape single quotes
-                DataView dv = dt.DefaultView;
-                dv.RowFilter = $"Title LIKE '%{search}%' OR Category LIKE '%{search}%'";
-
-                // Bind the filtered view
-                dataGridView3.DataSource = dv;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Search failed: " + ex.Message);
-            }
         }
 
         public void btnStatusUpdate(string VideoTitle, Button btnStatusVideo, DataGridViewCellEventArgs e, DataGridView dataGridView2)

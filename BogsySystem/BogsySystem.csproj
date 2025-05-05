@@ -75,6 +75,18 @@
     <Compile Include="Design\BogsyReport.Designer.cs">
       <DependentUpon>BogsyReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Design\CustomerReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Design\CustomerReport.Designer.cs">
+      <DependentUpon>CustomerReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\ReportMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Design\ReportMenu.Designer.cs">
+      <DependentUpon>ReportMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Design\VideoRentalMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,8 +136,14 @@
     <EmbeddedResource Include="Design\CustomerLibraryForm.resx">
       <DependentUpon>CustomerLibraryForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Design\CustomerReport.resx">
+      <DependentUpon>CustomerReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Design\MainMenuForm.resx">
       <DependentUpon>MainMenuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\ReportMenu.resx">
+      <DependentUpon>ReportMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Design\VideoRentalMenuForm.resx">
       <DependentUpon>VideoRentalMenuForm.cs</DependentUpon>

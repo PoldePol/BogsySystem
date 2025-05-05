@@ -30,6 +30,30 @@ namespace BogsySystem
             da.Fill(dt);
             dataGridView1.DataSource = dt;
         }
+        public void CustomerLibrarySearchBar(DataGridView dataGridView2, TextBox txtSearchBar1)
+        {
+            try
+            {
+                // Initialize and open the connection
+                connection.DBConnect(ref cnBogsy);
+                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM CustomerLibrary", cnBogsy);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                // Apply the filter
+                string search = txtSearchBar1.Text.Replace("'", "''");
+                DataView dv = dt.DefaultView;
+                dv.RowFilter = $"First_Name LIKE '%{search}%' OR Last_Name LIKE '%{search}%'";
+
+                // Bind the filtered view
+                dataGridView2.DataSource = dv;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Search failed: " + ex.Message);
+            }
+        }
+
         public void btnClearAction(TextBox txtFname, TextBox txtLname, DateTimePicker bdayPicker, TextBox txtPNumber, TextBox txtEAddress, TextBox txtHAddress, Button btnAddCustomer)
         {
             txtFname.Clear();
